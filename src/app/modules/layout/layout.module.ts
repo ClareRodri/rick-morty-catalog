@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   declarations: [HeaderComponent, SidebarComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [HeaderComponent, SidebarComponent]
 })
 export class LayoutModule { }
