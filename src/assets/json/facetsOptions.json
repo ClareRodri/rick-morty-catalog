@@ -1,0 +1,24 @@
+{
+  "status": [
+    "alive",
+    "dead",
+    "unknown"
+  ],
+  "species": [
+    "Human",
+    "Alien",
+    "Humanoid",
+    "unknown",
+    "Mythological Creature",
+    "Robot",
+    "Animal",
+    "Cronenberg",
+    "Disease"
+  ],
+  "genders": [
+    "female",
+    "male",
+    "genderless",
+    "unknown"
+  ]
+}
