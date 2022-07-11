@@ -48,6 +48,12 @@ export class FilterService {
           specie: this.currentFilterValue.specie.includes(value) ? this.currentFilterValue.specie.replace(value, ""): value
         };
         break;
+        case this.facetType.name:
+          this.currentFilterValue = {
+            ...this.currentFilterValue,
+            searchBar: value
+          };
+          break;
       default:
         break;
     }

@@ -50,6 +50,7 @@ export class CharacteresService {
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.gender, filterApplied.gender);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.specie, filterApplied.specie);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.status, filterApplied.status);
+    paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.name, filterApplied.searchBar);
 
     const queryUrl = `${this.URLBASE}${this.URLAPI.Character}${paramQuery}`;
     return this.httpCliente.get(queryUrl);
