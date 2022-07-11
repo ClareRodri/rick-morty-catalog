@@ -12,11 +12,7 @@ export class CardCharacterComponent implements OnInit, OnChanges {
 
   constructor() { }
   
-
-  ngOnInit(): void {
-   
-    
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("CardCharacterComponent", changes);

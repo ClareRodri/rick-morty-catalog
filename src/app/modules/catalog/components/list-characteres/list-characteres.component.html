@@ -1,3 +1,5 @@
-<div *ngFor="let item of listCharacteres">
-    <app-card-character [character]="item"></app-card-character>
+<div class="characteres" *ngFor="let item of listCharacteres">
+    <a [href]="item.url">
+        <app-card-character [character]="item"></app-card-character>
+    </a>
 </div>
