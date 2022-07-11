@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { FilterService } from 'src/app/modules/layout/services/filters/filter.service';
+import { FiltersModel } from 'src/app/modules/shared/models/filtesModel';
 import { CharacterModel } from '../../models/character.model';
 import { CharacteresService } from '../../services/characteres/characteres.service';
 
@@ -13,10 +15,15 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   public characterSub: any[] = [];
   public listCharacteres: CharacterModel[] = [];
   private countPag = 1;
+  public filterSubscription: Subscription;
+  public filtersSelected = new Subject<FiltersModel>();
 
-  constructor(private characterService: CharacteresService) {
+  constructor(
+    private readonly characterService: CharacteresService,
+    private readonly filterService: FilterService
+  ) {
     this.createSubscriptions();
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -27,6 +34,24 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
 
   private createSubscriptions() {
     this.characterSub.push(this.characterService.getAllCharacteres(this.countPag).subscribe(items => this.getAllCharacteres(items)));
+    this.filterSubscription = this.filterService.filterChangeObservable.subscribe(
+      (filterChange: FiltersModel) => {
+        this.filtersSelected.next(filterChange)
+      }
+    )
+
+    this.characterSub.push(
+      this.filtersSelected.subscribe(
+        (filterApplied: FiltersModel) => {
+          //TODO: Reset pagination
+          this.characterService.getCharacteresByFilters(filterApplied).subscribe(
+            (result) => {
+              console.log(result);
+            }
+          )
+        }
+      )
+    );  
   }
 
   private getAllCharacteres(items: CharacterModel[]) { 

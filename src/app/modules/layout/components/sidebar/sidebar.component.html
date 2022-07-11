@@ -1,1 +1,25 @@
-<p>sidebar works!</p>
+<ng-container *ngIf="facetList !== undefined && facetList !== null">
+  <a *ngFor="let status of facetList.status" (click)="setFacet(facetType.status, status)"
+    [class.filter-selected]="status === currentFilterSelection.status"
+    class="d-block">
+    {{status}}
+  </a>
+
+  <hr />
+
+  <a *ngFor="let specie of facetList.species"
+    [class.filter-selected]="specie === currentFilterSelection.specie"
+    (click)="setFacet(facetType.specie, specie)"
+    class="d-block">
+    {{specie}}
+  </a>
+
+  <hr />
+
+  <a *ngFor="let gender of facetList.genders"
+    [class.filter-selected]="gender === currentFilterSelection.gender"
+    (click)="setFacet(facetType.gender, gender)"
+    class="d-block">
+    {{gender}}
+  </a>
+</ng-container>
