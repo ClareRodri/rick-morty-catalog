@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CardCharacterComponent } from './components/card-character/card-character.component';
 import { DetailCharacterComponent } from './components/detail-character/detail-character.component';
 import { ListCharacteresComponent } from './components/list-characteres/list-characteres.component';
+import { RouterModule } from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
 @NgModule({
   declarations: [CardCharacterComponent, DetailCharacterComponent, ListCharacteresComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    InfiniteScrollModule
   ]
 })
 export class CatalogModule { }

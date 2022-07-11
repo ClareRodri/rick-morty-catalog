@@ -17,9 +17,9 @@ export class CharacteresService {
     
   constructor(private httpCliente: HttpClient) { }
 
-  public getAllCharacteres(): Observable<CharacterModel[]> {
+  public getAllCharacteres(numPag: number): Observable<CharacterModel[]> {
     return this.httpCliente
-      .get(`${this.URLBASE}/${this.URLAPI.Character}`)
+      .get(`${this.URLBASE}/${this.URLAPI.Character}/?page=${numPag}`)
       .pipe(
         map((resp: any) => resp["results"].map(item => new CharacterModel(item)))
       )

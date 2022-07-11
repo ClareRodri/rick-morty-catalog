@@ -11,11 +11,10 @@ export class CardCharacterComponent implements OnInit, OnChanges {
   @Input() character: CharacterModel;
 
   constructor() { }
-  
+
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("CardCharacterComponent", changes);
   }
 
 }

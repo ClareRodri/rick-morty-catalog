@@ -11,8 +11,9 @@ import { CharacteresService } from '../../services/characteres/characteres.servi
 export class ListCharacteresComponent implements OnInit, OnDestroy {
 
   public characterSub: any[] = [];
-  public listCharacteres: CharacterModel[];
-  
+  public listCharacteres: CharacterModel[] = [];
+  private countPag = 1;
+
   constructor(private characterService: CharacteresService) {
     this.createSubscriptions();
    }
@@ -25,12 +26,13 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   }
 
   private createSubscriptions() {
-    this.characterSub.push(this.characterService.getAllCharacteres().subscribe(items => this.getAllCharacteres(items)));
+    this.characterSub.push(this.characterService.getAllCharacteres(this.countPag).subscribe(items => this.getAllCharacteres(items)));
   }
 
   private getAllCharacteres(items: CharacterModel[]) { 
     console.log("getAllCharacteres", items);   
-    this.listCharacteres = items;
+    if (this.listCharacteres.length > 0) this.listCharacteres = this.listCharacteres.concat(items);
+    else this.listCharacteres = items
   }
 
   private getCharacterById(items) {
@@ -43,5 +45,10 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
 
   private getCharacteresByFilters(items) {
     console.log("getCharacteresById", items);
+  }
+
+  public onScroll(ev) {
+    this.countPag++;
+    this.createSubscriptions();
   }
 }
