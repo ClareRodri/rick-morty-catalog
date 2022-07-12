@@ -2,35 +2,38 @@
 
   <app-search-bar></app-search-bar>
 
-  <h3>Filter types</h3>
-  <a class="sidebar__item">Characters</a>
-  <a class="sidebar__item">Episodes</a>
-  <a class="sidebar__item">Locations</a>
+  <div class="sidebar__filters">
+    <h3>Filter types</h3>
+    <a class="sidebar__item">Characters</a>
+    <a class="sidebar__item">Episodes</a>
+    <a class="sidebar__item">Locations</a>
+    <hr />
+  </div>
+  <div class="sidebar__filters_type">
+    <div>
+      <h3>Status</h3>
+      <a *ngFor="let status of facetList.status" (click)="setFacet(facetType.status, status)"
+        [class.filter-selected]="status === currentFilterSelection.status" class="sidebar__item">
+        {{status}}
+      </a>
+      <hr />
+    </div>
 
-  <h3>Status</h3>
-  <a *ngFor="let status of facetList.status" 
-    (click)="setFacet(facetType.status, status)"
-    [class.filter-selected]="status === currentFilterSelection.status"
-    class="sidebar__item">
-    {{status}}
-  </a>
+    <div>
+      <h3>Species</h3>
+      <a *ngFor="let specie of facetList.species" [class.filter-selected]="specie === currentFilterSelection.specie"
+        (click)="setFacet(facetType.specie, specie)" class="sidebar__item">
+        {{specie}}
+      </a>
+      <hr />
+    </div>
 
-  <hr />
-  <h3>Species</h3>
-  <a *ngFor="let specie of facetList.species"
-    [class.filter-selected]="specie === currentFilterSelection.specie"
-    (click)="setFacet(facetType.specie, specie)"
-    class="sidebar__item">
-    {{specie}}
-  </a>
-
-  <hr />
-
-  <h3>Genders</h3>
-  <a *ngFor="let gender of facetList.genders"
-    [class.filter-selected]="gender === currentFilterSelection.gender"
-    (click)="setFacet(facetType.gender, gender)"
-    class="sidebar__item">
-    {{gender}}
-  </a>
+    <div>
+      <h3>Genders</h3>
+      <a *ngFor="let gender of facetList.genders" [class.filter-selected]="gender === currentFilterSelection.gender"
+        (click)="setFacet(facetType.gender, gender)" class="sidebar__item">
+        {{gender}}
+      </a>
+    </div>
+  </div>  
 </ng-container>
