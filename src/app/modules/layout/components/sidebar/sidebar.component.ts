@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FacetsModel } from 'src/app/modules/shared/models/facetsModel';
 import { FacetTypeEnum } from 'src/app/modules/shared/models/facetTypeEnum';

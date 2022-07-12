@@ -51,12 +51,13 @@ export class CharacteresService {
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.specie, filterApplied.specie);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.status, filterApplied.status);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.name, filterApplied.searchBar);
+    paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.page, filterApplied.page + '');
 
     const queryUrl = `${this.URLBASE}${this.URLAPI.Character}${paramQuery}`;
     return this.httpCliente.get(queryUrl);
   }
 
-  private setQueryParam(query: string, key: string, value: string) {
+  private setQueryParam(query: string, key: string, value: any) {
     const appendQuery = value.length > 0 ? `${key}=${value}`: ''
 
     if(appendQuery.length === 0) {

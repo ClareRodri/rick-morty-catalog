@@ -1,3 +1,17 @@
+.sidebar {
+  padding-top: 2rem;
+}
+
+.sidebar__item{
+  display: block;
+  padding: 5px 10px;
+  border-radius: 13px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 .filter-selected {
-  background-color: red;
+  background-color: #ccc;
+  opacity: .8 !important;
+  color: black;
 }

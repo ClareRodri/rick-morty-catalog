@@ -6,4 +6,10 @@ export class FiltersModel {
   specie: string;
 
   status: string;
+  
+  type: string;
+  
+  filterType: string;
+
+  page: number;
 }

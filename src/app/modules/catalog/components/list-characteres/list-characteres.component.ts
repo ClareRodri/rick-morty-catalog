@@ -4,7 +4,7 @@ import { FilterService } from 'src/app/modules/layout/services/filters/filter.se
 import { FiltersModel } from 'src/app/modules/shared/models/filtesModel';
 import { CharacterModel } from '../../models/character.model';
 import { CharacteresService } from '../../services/characteres/characteres.service';
-
+import { FacetTypeEnum } from 'src/app/modules/shared/models/facetTypeEnum';
 @Component({
   selector: 'app-list-characteres',
   templateUrl: './list-characteres.component.html',
@@ -15,15 +15,15 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   public characterSub: any[] = [];
   public listCharacteres: CharacterModel[] = [];
   private countPag = 1;
+
   public filterSubscription: Subscription;
   public filtersSelected = new Subject<FiltersModel>();
+  public pagination = new Subject<number>();
 
   constructor(
     private readonly characterService: CharacteresService,
     private readonly filterService: FilterService
-  ) {
-    this.createSubscriptions();
-  }
+  ) { this.createSubscriptions(); }
 
   ngOnInit(): void {
   }
@@ -33,47 +33,28 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   }
 
   private createSubscriptions() {
-    this.characterSub.push(this.characterService.getAllCharacteres(this.countPag).subscribe(items => this.getAllCharacteres(items)));
-    this.filterSubscription = this.filterService.filterChangeObservable.subscribe(
-      (filterChange: FiltersModel) => {
-        this.filtersSelected.next(filterChange)
-      }
-    )
-
-    this.characterSub.push(
-      this.filtersSelected.subscribe(
-        (filterApplied: FiltersModel) => {
-          //TODO: Reset pagination
+    this.filtersSelected.subscribe(
+      (filterApplied: FiltersModel) => {
+        if (filterApplied.filterType != FacetTypeEnum.bar) {
           this.characterService.getCharacteresByFilters(filterApplied).subscribe(
-            (result) => {
-              console.log(result);
+            (result: any) => {
+              if (filterApplied.type == 'scroll') this.listCharacteres = this.listCharacteres.concat(result.results);
+              else this.listCharacteres = result.results;
             }
           )
         }
-      )
-    );  
-  }
-
-  private getAllCharacteres(items: CharacterModel[]) { 
-    console.log("getAllCharacteres", items);   
-    if (this.listCharacteres.length > 0) this.listCharacteres = this.listCharacteres.concat(items);
-    else this.listCharacteres = items
-  }
-
-  private getCharacterById(items) {
-    console.log("getCharacterById", items);
-  }
-
-  private getCharacteresById(items) {
-    console.log("getCharacteresById", items);
-  }
-
-  private getCharacteresByFilters(items) {
-    console.log("getCharacteresById", items);
+      }
+    )    
+    this.filterSubscription = this.filterService.filterChangeObservable.subscribe(
+      (filterChange: FiltersModel) => {
+        this.countPag = filterChange.page;
+        this.filtersSelected.next(filterChange)
+      }
+    )    
   }
 
   public onScroll(ev) {
     this.countPag++;
-    this.createSubscriptions();
+    this.filterService.setFilterSelection(FacetTypeEnum.page, this.countPag);
   }
 }

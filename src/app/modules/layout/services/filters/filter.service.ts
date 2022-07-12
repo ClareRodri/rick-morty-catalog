@@ -23,37 +23,61 @@ export class FilterService {
       gender: '',
       searchBar: '',
       specie: '',
-      status: ''
+      status: '',
+      page: 1,
+      type: '',
+      filterType: ''
     };
+    
     this.filterSubject.next(this.currentFilterValue);
   }
 
-  setFilterSelection(filterType: string, value: string) {
+  setFilterSelection(filterType: string, value: any) {
     switch (filterType) {
       case this.facetType.status:
         this.currentFilterValue = {
           ...this.currentFilterValue,
+          filterType: filterType,
+          page: 1,
+          type: "",
           status: this.currentFilterValue.status.includes(value) ? this.currentFilterValue.status.replace(value, ""): value
         };
         break;
       case this.facetType.gender:
         this.currentFilterValue = {
           ...this.currentFilterValue,
+          filterType: filterType,
+          page: 1,
+          type: "",
           gender: this.currentFilterValue.gender.includes(value) ? this.currentFilterValue.gender.replace(value, ""): value
         };
         break;
       case this.facetType.specie:
         this.currentFilterValue = {
           ...this.currentFilterValue,
+          filterType: filterType,
+          page: 1,
+          type: "",
           specie: this.currentFilterValue.specie.includes(value) ? this.currentFilterValue.specie.replace(value, ""): value
         };
         break;
-        case this.facetType.name:
+      case this.facetType.name:
           this.currentFilterValue = {
             ...this.currentFilterValue,
+            filterType: filterType,
+            page: 1,
+            type: "",
             searchBar: value
           };
           break;
+      case this.facetType.page:
+        this.currentFilterValue = {
+          ...this.currentFilterValue,
+          filterType: filterType,
+          page: parseInt(value),
+          type: "scroll"
+        };
+        break;  
       default:
         break;
     }

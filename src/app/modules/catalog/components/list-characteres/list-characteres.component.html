@@ -3,7 +3,7 @@
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll($event)">
     <div class="characteres" *ngFor="let item of listCharacteres">
-        <a [routerLink]="['/catalog/detail/' + item.id]">
+        <a [routerLink]="['/catalog/detail/', item.id]">
             <app-card-character [character]="item"></app-card-character>
         </a>
     </div>

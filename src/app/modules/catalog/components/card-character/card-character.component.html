@@ -1,5 +1,8 @@
 <figure class="card-character">
     <img class="card-character__image" src="{{character.image}}">   
-    <span [classList]="'card-character__status ' + character.status">{{character.status}}</span>
+    <span [classList]="'card-character__status ' + character.status">
+        <b>Status:</b>
+        {{character.status}}
+    </span>
 </figure>
 <p class="card-character__name">{{character.name}}</p>
