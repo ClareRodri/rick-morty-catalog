@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "RickMorty";
+    src: local("Oxygen"), url(./assets/fonts/Ricky-and-Morty-font.ttf) format("truetype");
+}
+
 body {
     background-color: #20232a;
     margin: 0;
