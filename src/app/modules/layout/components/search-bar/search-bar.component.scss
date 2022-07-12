@@ -9,6 +9,12 @@
     &::placeholder {
         color: #ccc;
     }
+
+    &:focus {
+        ~.header__searchbar_elements {
+            display: inline-block!important;
+        }
+    }
 }
 
 .header__searchbar {
@@ -26,12 +32,13 @@
     z-index: 100;
     position: absolute;
     top: 42px;
-    left: 13px;
+    left: 0;
     background-color: white;
     height: 300px;
     overflow: auto;
     width: auto;
     border: solid 2px #ccc;
+    display: none;
     color: rgb(124, 121, 121);
     ul {
         list-style-type: none;
