@@ -1,3 +1,4 @@
+
 .app-header {
     background-color: white;
     margin-bottom: 2rem;
@@ -6,5 +7,10 @@
 }
 
 .app-sidebar {
-    width: 200px;
+    width: 250px;
+    display: inline-block;
+}
+
+.app-main {
+    display: flex;
 }

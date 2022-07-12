@@ -1,4 +1,4 @@
-<div class="modal-body">
+<div class="modal-body modal-detail-search">
     <button type="button" class="pull-right close-btn" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -7,16 +7,17 @@
             <img [src]="detailModel.image">
         </div>
         <div class="modal__detail_content">
-            <div class="modal__detail_status">
+            <div class="modal__detail_item modal__detail_status">
                 <h3>{{detailModel.name}}</h3>
+                <span [classList]="'status-bar ' + detailModel.status"></span>
                 <span>{{detailModel.status}} - {{detailModel.species}}</span>
             </div>
-            <div class="modal__detail_location">
-                <span>Last known location:</span>
+            <div class="modal__detail_item modal__detail_location">
+                <span class="modal__detail_title">Last known location:</span>
                 <span>{{detailModel.location.name}}</span>
             </div>
-            <div class="modal__detail_origin">
-                <span>First seen in:</span>
+            <div class="modal__detail_item modal__detail_origin">
+                <span class="modal__detail_title">First seen in:</span>
                 <span>{{detailModel.origin.name}}</span>
             </div>
         </div>

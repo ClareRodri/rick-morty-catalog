@@ -1,0 +1,11 @@
+@mixin alive {
+    background: rgb(117, 170, 38);
+}
+
+@mixin dead {
+    background: rgb(197, 8, 8);
+}
+
+@mixin unknown {
+    background-color: rgb(119, 118, 118);
+}

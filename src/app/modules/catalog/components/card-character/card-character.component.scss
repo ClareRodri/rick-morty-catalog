@@ -1,3 +1,5 @@
+@use "../../../../../assets/scss/status-character";
+
 .card-character {
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -30,6 +32,7 @@
 
 .card-character__image {
     border-radius: 10px;
+    width: 100%;
 }
 
 .card-character__name {
@@ -39,7 +42,7 @@
 
 .card-character__status {
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     left: 15px;
 
     padding-inline-end: 10px;
@@ -48,18 +51,10 @@
     border-radius: 10px;
 
     color: white;
-    width: 700;
+    font-size: 0.8rem;
     line-height: 1.8rem;
 
-    &.Alive{
-        background: rgb(117, 170, 38);
-    }
-
-    &.Dead {
-        background: rgb(197, 8, 8);
-    }
-
-    &.unknown {
-        background-color: rgb(119, 118, 118);
-    }
+    &.Alive {@include status-character.alive;}
+    &.Dead {@include status-character.dead;}
+    &.unknown {@include status-character.unknown;}
 }

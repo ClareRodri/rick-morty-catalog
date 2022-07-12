@@ -1,5 +1,9 @@
-.modal-header,
-.modal-body {
+@use "../../../../../assets/scss/status-character";
+
+.modal-detail-search {
+    position: relative;
+}
+.modal-header, .modal-body {
     background-color: #20232a;
     border: none;
     padding: 0;
@@ -10,6 +14,21 @@
     background-color: #20232a;
     border: none;
 }
+.modal__detail {
+    display: inline-flex;;
+}
+.modal__detail_title {
+    font-size: 1rem;
+    color: rgb(158, 158, 158);
+    display: block;
+    margin-bottom: 5px;
+}
+.modal__detail_content {
+    margin: 20px;
+}
+.modal__detail_item {
+    margin: 10px 5px;
+}
 .close-btn {
     background: transparent;
     color: rgba(255, 255, 255, 0.7);
@@ -17,4 +36,29 @@
     border: none;
     font-weight: 500;
     cursor: pointer;
+
+    &{
+        position: absolute;
+        right: 0;
+    }
 }
+.status-bar {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 50%;
+    
+    &.Alive {
+        @include status-character.alive;
+    }
+    
+    &.Dead {
+        @include status-character.dead;
+    }
+    
+    &.unknown {
+        @include status-character.unknown;
+    }
+}
+
