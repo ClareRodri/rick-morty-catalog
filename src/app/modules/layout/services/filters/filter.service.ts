@@ -69,7 +69,16 @@ export class FilterService {
             type: "",
             searchBar: value
           };
-          break;
+        break;
+      case this.facetType.bar:
+        this.currentFilterValue = {
+          ...this.currentFilterValue,
+          filterType: filterType,
+          page: 1,
+          type: "",
+          searchBar: value
+        };
+        break;
       case this.facetType.page:
         this.currentFilterValue = {
           ...this.currentFilterValue,

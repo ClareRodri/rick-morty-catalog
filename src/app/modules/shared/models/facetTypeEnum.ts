@@ -3,6 +3,6 @@ export enum FacetTypeEnum {
   specie = "species",
   gender = "gender",
   name = "name",
-  bar = "name",
+  bar = "nameBar",
   page = "page"
 }

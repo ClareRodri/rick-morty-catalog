@@ -5,15 +5,13 @@ import { DetailCharacterComponent } from './components/detail-character/detail-c
 import { ListCharacteresComponent } from './components/list-characteres/list-characteres.component';
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
-
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [CardCharacterComponent, DetailCharacterComponent, ListCharacteresComponent],
   imports: [
     CommonModule,
     RouterModule,
     InfiniteScrollModule
-  ]
+  ],
 })
 export class CatalogModule { }

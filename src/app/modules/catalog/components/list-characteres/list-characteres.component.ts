@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { FilterService } from 'src/app/modules/layout/services/filters/filter.service';
 import { FiltersModel } from 'src/app/modules/shared/models/filtesModel';
 import { CharacterModel } from '../../models/character.model';
 import { CharacteresService } from '../../services/characteres/characteres.service';
 import { FacetTypeEnum } from 'src/app/modules/shared/models/facetTypeEnum';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalDetailCharacterComponent } from '../modal-detail-character/modal-detail-character.component';
 @Component({
   selector: 'app-list-characteres',
   templateUrl: './list-characteres.component.html',
@@ -20,9 +22,13 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   public filtersSelected = new Subject<FiltersModel>();
   public pagination = new Subject<number>();
 
+
+  bsModalRef?: BsModalRef;
+
   constructor(
     private readonly characterService: CharacteresService,
-    private readonly filterService: FilterService
+    private readonly filterService: FilterService,
+    private modalService: BsModalService
   ) { this.createSubscriptions(); }
 
   ngOnInit(): void {
@@ -57,4 +63,15 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
     this.countPag++;
     this.filterService.setFilterSelection(FacetTypeEnum.page, this.countPag);
   }
+
+  public openNewDialog(item) {
+    const initialState: any = {
+      initialState: {
+        detailModel: item
+      }
+    };
+    this.bsModalRef = this.modalService.show(ModalDetailCharacterComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  
 }

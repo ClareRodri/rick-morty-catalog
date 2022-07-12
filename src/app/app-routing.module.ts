@@ -7,9 +7,7 @@ import { ListCharacteresComponent } from './modules/catalog/components/list-char
 import { LayoutModule } from './modules/layout/layout.module';
 
 const routes: Routes = [
-  { path: 'catalog', component: ListCharacteresComponent },
-  { path: 'catalog/:filter', component: ListCharacteresComponent },
-  { path: 'catalog/detail/:id', component: DetailCharacterComponent }
+  { path: '', component: ListCharacteresComponent }
 ];
 
 @NgModule({

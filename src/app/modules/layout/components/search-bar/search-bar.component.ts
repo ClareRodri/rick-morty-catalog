@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { ModalDetailCharacterComponent } from 'src/app/modules/catalog/components/modal-detail-character/modal-detail-character.component';
 import { CharacterModel } from 'src/app/modules/catalog/models/character.model';
 import { CharacteresService } from 'src/app/modules/catalog/services/characteres/characteres.service';
 import { FacetTypeEnum } from 'src/app/modules/shared/models/facetTypeEnum';
@@ -22,9 +24,11 @@ export class SearchBarComponent implements OnInit {
   private filtersSelected = new Subject<FiltersModel>();
 
   public listResult: CharacterModel[] = [];
+  bsModalRef?: BsModalRef;
 
   constructor(private readonly filterService: FilterService,
-              private readonly characterService: CharacteresService) { }
+              private readonly characterService: CharacteresService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.setSubscription();
@@ -58,6 +62,22 @@ export class SearchBarComponent implements OnInit {
       }
     );
     
+  }
+
+  getSearch() {
+    this.filterService.setFilterSelection(FacetTypeEnum.name, this.searchText.value);
+    this.listResult = []
+  }
+
+  openNewDialog(item) {
+    debugger
+    const initialState: any = {
+      initialState: {
+        detailModel: item
+      }
+    };
+    this.bsModalRef = this.modalService.show(ModalDetailCharacterComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
   ngOnDestroy(): void {
