@@ -70,11 +70,11 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
         if (filterApplied.filterType != FacetTypeEnum.bar) {
           this.characterService.getCharacteresByFilters(filterApplied).subscribe(
             (result: any) => {
-              this.paginationModel.totalItems = result.info.count;
-
               if (filterApplied.type == 'scroll') this.listCharacteres = this.listCharacteres.concat(result.results);
-              else this.listCharacteres = result.results;
-              
+              else {
+                this.listCharacteres = result.results;
+                if (filterApplied.type != 'page') this.clearPagination(result.info.count);
+              }               
             }
           )
         }
@@ -91,7 +91,12 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   private config() {
     this.countPag = 1;
     this.paginationType = "scroll";
+    this.clearPagination(1);
+  }
+
+  private clearPagination(countTotal) {
     this.paginationModel = new PaginationModel();
+    this.paginationModel.totalItems = countTotal;
     this.paginationModel.itemsPerPage = 20;
   }
 
