@@ -70,14 +70,17 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
         if (filterApplied.filterType != FacetTypeEnum.bar) {
           this.characterService.getCharacteresByFilters(filterApplied).subscribe(
             (result: any) => {
-              if (filterApplied.type == 'scroll') this.listCharacteres = this.listCharacteres.concat(result.results);
+              if (filterApplied.type == 'scroll') {
+                this.listCharacteres = this.listCharacteres.concat(result.results)
+                this.clearPagination(result.info.count, result.info.pages);
+              }
               else {
                 this.listCharacteres = result.results;
-                if (filterApplied.type != 'page') this.clearPagination(result.info.count);
+                if (filterApplied.type != 'page') this.clearPagination(result.info.count, result.info.pages);
               }               
             }, (error) => {
               this.listCharacteres = [];
-              this.clearPagination(1);
+              this.clearPagination(1,1);
             }
           )
         }
@@ -94,13 +97,14 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   private config() {
     this.countPag = 1;
     this.paginationType = "scroll";
-    this.clearPagination(1);
+    this.clearPagination(1,1);
   }
 
-  private clearPagination(countTotal) {
+  private clearPagination(countTotal, totalPages) {
     this.paginationModel = new PaginationModel();
     this.paginationModel.totalItems = countTotal;
     this.paginationModel.itemsPerPage = 20;
+    this.paginationModel.totalPages = totalPages;
   }
 
   private pageChanged(ev) {
@@ -109,8 +113,9 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
   }
 
   private onScroll() {
-    this.countPag++;
-    this.filterService.setFilterSelection(FacetTypeEnum.scroll, this.countPag);
+    if (this.paginationModel.totalPages > this.countPag) {
+      this.countPag++;
+      this.filterService.setFilterSelection(FacetTypeEnum.scroll, this.countPag);
+    }
   }
-
 }
