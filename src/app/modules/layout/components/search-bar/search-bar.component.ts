@@ -43,46 +43,19 @@ export class SearchBarComponent implements OnInit {
         else this.listResult = []
       }
     )
-    
-    this.filtersSelected.subscribe(
-      (filterApplied: FiltersModel) => {
-        if (filterApplied.filterType == FacetTypeEnum.bar) {
-          this.characterService.getCharacteresByFilters(filterApplied).subscribe(
-            (result: any) => {
-              this.listResult = result["results"];
-            }
-          )
-        }
-      }
-    )
-
-    this.filterSubscription = this.filterService.filterChangeObservable.subscribe(
-      (filterChange: FiltersModel) => {
-        this.filtersSelected.next(filterChange)
-      }
-    );
-    
   }
 
-  getSearch() {
+  public getSearch() {
     this.filterService.setFilterSelection(FacetTypeEnum.name, this.searchText.value);
     this.listResult = []
   }
 
-  openNewDialog(item) {
-    debugger
-    const initialState: any = {
-      initialState: {
-        detailModel: item
-      }
-    };
-    this.bsModalRef = this.modalService.show(ModalDetailCharacterComponent, initialState);
-    this.bsModalRef.content.closeBtnName = 'Close';
+  public clearSearch() {
+    this.searchText.setValue('')
   }
 
   ngOnDestroy(): void {
     this.componentSubscription.unsubscribe();
-    this.filterSubscription.unsubscribe();
   }
 
 }

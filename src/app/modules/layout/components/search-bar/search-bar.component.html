@@ -1,11 +1,7 @@
 <div class="header__searchbar">
     <input class="header__search_input" placeholder="Search character" [formControl]="searchText" (keyup.enter)="getSearch()"/>
     <i class="header__searchbar_ico fa fa-search" aria-hidden="true"></i>
-    <span class="header__searchbar_elements" *ngIf="listResult != undefined && listResult.length > 0">
-        <ul>
-           <li *ngFor="let character of listResult" (click)="openNewDialog(character)">
-               {{character.name}} - <span class="small-detail">{{character.species}}</span>
-           </li> 
-        </ul>
-    </span>
+    <button class="header__searchbar_ico_close" *ngIf="searchText.value.length > 0" (click)="clearSearch()">
+        <i class="fa fa-close" aria-hidden="true"></i>
+    </button>
 </div>

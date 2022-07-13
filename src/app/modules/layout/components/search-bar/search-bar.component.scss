@@ -24,6 +24,23 @@
     left: 10px;
 }
 
+.header__searchbar_ico_close {
+    color: $gray-ligth;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    &{
+        padding: 0;
+        margin: 0;
+        width: 15px;
+        height: 15px;
+        background: transparent;
+        border: none;
+    }
+}
+
 .header__searchbar_elements {
     z-index: 100;
     position: absolute;
