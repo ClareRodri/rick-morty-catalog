@@ -1,3 +1,5 @@
+@import "../../../../../assets/scss/color";
+
 .header {
     padding: 0 1rem;
 }
@@ -22,8 +24,8 @@
 .header__rickmorty {
     font-family: "RickMorty", Arial, Helvetica, sans-serif;
     font-size: 25px;
-    color: #17aeca;
-    -webkit-text-fill-color: #17aeca;
+    color:$rickmorty-blue;
+    -webkit-text-fill-color: $rickmorty-blue;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #bcda78;
+    -webkit-text-stroke-color: $rickmorty-green;
 }

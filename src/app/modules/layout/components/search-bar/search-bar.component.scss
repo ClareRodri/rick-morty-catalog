@@ -1,19 +1,15 @@
+@import "../../../../../assets/scss/color";
+
 .header__search_input {
     height: 30px;
     width: auto;
     padding-right: 15px;
     padding-left: 30px;
     border-radius: 50px;
-    border: solid 2px #ccc;
+    border: solid 2px $gray-ligth;
 
     &::placeholder {
-        color: #ccc;
-    }
-
-    &:focus {
-        ~.header__searchbar_elements {
-            display: inline-block!important;
-        }
+        color: $gray-ligth;
     }
 }
 
@@ -22,7 +18,7 @@
 }
 
 .header__searchbar_ico {
-    color: #ccc;
+    color: $gray-ligth;
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -37,7 +33,7 @@
     height: 300px;
     overflow: auto;
     width: auto;
-    border: solid 2px #ccc;
+    border: solid 2px $gray-ligth;
     color: rgb(124, 121, 121);
     ul {
         list-style-type: none;
@@ -47,4 +43,9 @@
             padding: 10px 15px;
         }
     }
+}
+
+.small-detail {
+    font-size: 0.8rem;
+    font-weight: 700;
 }
