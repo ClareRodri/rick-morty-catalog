@@ -31,6 +31,6 @@ export class LoaderComponent implements AfterViewInit{
   }
 
   ngOnDestroy() {
-    this.loadingSubscription.unsubscribe();
+    if (this.loadingSubscription != undefined)  this.loadingSubscription.unsubscribe();
   }
 }

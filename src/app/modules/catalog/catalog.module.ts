@@ -9,7 +9,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [CardCharacterComponent,  ListCharacteresComponent],
   imports: [
     CommonModule,
-    RouterModule,
     InfiniteScrollModule,
     NgxPaginationModule
   ],

@@ -51,7 +51,6 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
       }
     };
     this.bsModalRef = this.modalService.show(ModalDetailCharacterComponent, initialState);
-    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
   public setTypeVisual(type) {
@@ -60,7 +59,8 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
     this.listCharacteres = [];
 
     if (type == 'scroll') this.onScroll();
-    else this.pageChanged(1);
+    else if (type == 'page') this.pageChanged(1);
+    else this.filterService.setFilterSelection(FacetTypeEnum.name, 1);
 
   }
 

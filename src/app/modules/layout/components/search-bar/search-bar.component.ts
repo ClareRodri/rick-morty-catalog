@@ -49,7 +49,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.componentSubscription.unsubscribe();
+    if (this.componentSubscription != undefined) this.componentSubscription.unsubscribe();
   }
 
 }

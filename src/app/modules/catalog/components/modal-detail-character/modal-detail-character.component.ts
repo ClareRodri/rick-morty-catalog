@@ -15,8 +15,6 @@ export class ModalDetailCharacterComponent implements OnInit {
   constructor(public bsModalRef: BsModalRef) { } 
 
   ngOnInit() {
-   // this.list.push('PROFIT!!!');
-    console.log("detailModel", this.detailModel);
     
   }
 }
