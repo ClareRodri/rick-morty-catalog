@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './modules/layout/layout.module';
 import { CatalogModule } from './modules/catalog/catalog.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalDetailCharacterComponent } from './modules/catalog/components/modal-detail-character/modal-detail-character.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './modules/shared/shared.module';
+import { HttpInterceptorRickMorty } from './modules/shared/interceptors/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,12 @@ import { SharedModule } from './modules/shared/shared.module';
     NgxPaginationModule
   ],
   entryComponents: [ModalDetailCharacterComponent],
-  providers: [BsModalRef],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorRickMorty, multi: true },
+    BsModalRef
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
