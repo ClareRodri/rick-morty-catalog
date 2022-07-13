@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { ModalDetailCharacterComponent } from 'src/app/modules/catalog/components/modal-detail-character/modal-detail-character.component';
 import { CharacterModel } from 'src/app/modules/catalog/models/character.model';
-import { CharacteresService } from 'src/app/modules/catalog/services/characteres/characteres.service';
 import { FacetTypeEnum } from 'src/app/modules/shared/models/facetTypeEnum';
-import { FiltersModel } from 'src/app/modules/shared/models/filtesModel';
 import { FilterService } from '../../services/filters/filter.service';
 
 @Component({
@@ -18,23 +15,19 @@ import { FilterService } from '../../services/filters/filter.service';
 })
 export class SearchBarComponent implements OnInit {
 
-  searchText = new FormControl('');
+  public searchText = new FormControl('');
   private componentSubscription: Subscription;
-  private filterSubscription: Subscription;
-  private filtersSelected = new Subject<FiltersModel>();
 
   public listResult: CharacterModel[] = [];
-  bsModalRef?: BsModalRef;
+  private bsModalRef?: BsModalRef;
 
-  constructor(private readonly filterService: FilterService,
-              private readonly characterService: CharacteresService,
-              private modalService: BsModalService) { }
+  constructor(private readonly filterService: FilterService) { }
 
   ngOnInit(): void {
     this.setSubscription();
   }
 
-  setSubscription(): void {
+  private setSubscription(): void {
     this.searchText.valueChanges.pipe(
       debounceTime(400)
     ).subscribe(
@@ -52,6 +45,7 @@ export class SearchBarComponent implements OnInit {
 
   public clearSearch() {
     this.searchText.setValue('')
+    this.getSearch();
   }
 
   ngOnDestroy(): void {

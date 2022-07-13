@@ -1,38 +1,43 @@
-<div class="list-characteres-type-view">
-    <a class="options" [ngClass]="{'active': paginationType  == 'scroll'}" (click)="setTypeVisual('scroll')"> Infinite Scroll view</a>
-    <a class="options"  [ngClass]="{'active': paginationType  == 'pag'}" (click)="setTypeVisual('pag')"> Pagination view </a>
-</div>
-
-<ng-container *ngIf="paginationType == 'scroll'">
-    <div class="list-characteres list-characteres-scroll" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-        [scrollWindow]="false" (scrolled)="onScroll($event)">
-        <div class="characteres" *ngFor="let item of listCharacteres">
-            <a (click)="openNewDialog(item)" class="list-character__link">
-                <app-card-character [character]="item"></app-card-character>
-            </a>
-        </div>
+<ng-container *ngIf="listCharacteres.length > 0">
+    <div class="list-characteres-type-view">
+        <a class="options" [ngClass]="{'active': paginationType  == 'scroll'}" (click)="setTypeVisual('scroll')"> Infinite
+            Scroll view</a>
+        <a class="options" [ngClass]="{'active': paginationType  == 'pag'}" (click)="setTypeVisual('pag')"> Pagination view
+        </a>
     </div>
+
+    <ng-container *ngIf="paginationType == 'scroll'">
+        <div class="list-characteres list-characteres-scroll" infiniteScroll [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50" [scrollWindow]="false" (scrolled)="onScroll($event)">
+            <div class="characteres" *ngFor="let item of listCharacteres">
+                <a (click)="openNewDialog(item)" class="list-character__link">
+                    <app-card-character [character]="item"></app-card-character>
+                </a>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="paginationType == 'pag'">
+        <div class="list-characteres__pagination">
+            <pagination-controls (pageChange)="pageChanged($event)" directionLinks="true" autoHide="true" responsive="true"
+                previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+                screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+        <div class="list-characteres list-characteres-pag">
+            <div class="characteres"
+                *ngFor="let item of listCharacteres | paginate: { itemsPerPage: paginationModel.itemsPerPage, 
+                                                                                    currentPage:  paginationModel.currentPage, 
+                                                                                    totalItems: paginationModel.totalItems}">
+                <a (click)="openNewDialog(item)" class="list-character__link">
+                    <app-card-character [character]="item"></app-card-character>
+                </a>
+            </div>
+        </div>
+    </ng-container>
 </ng-container>
 
-<ng-container *ngIf="paginationType == 'pag'">
-    <div class="list-characteres__pagination">
-        <pagination-controls (pageChange)="pageChanged($event)"
-                            directionLinks="true"
-                            autoHide="true"
-                            responsive="true"
-                            previousLabel="Previous"
-                            nextLabel="Next"
-                            screenReaderPaginationLabel="Pagination"
-                            screenReaderPageLabel="page"
-                            screenReaderCurrentLabel="You're on page"></pagination-controls>
-    </div>
-    <div class="list-characteres list-characteres-pag">
-        <div class="characteres" *ngFor="let item of listCharacteres | paginate: { itemsPerPage: paginationModel.itemsPerPage, 
-                                                                                currentPage:  paginationModel.currentPage, 
-                                                                                totalItems: paginationModel.totalItems}" >
-            <a (click)="openNewDialog(item)" class="list-character__link">
-                <app-card-character [character]="item"></app-card-character>
-            </a>
-        </div>
+<ng-container *ngIf="listCharacteres.length <= 0">   
+    <div class="list-characteres-type-view">
+        <h2>No se encontraron resultados</h2>
     </div>
 </ng-container>

@@ -75,6 +75,9 @@ export class ListCharacteresComponent implements OnInit, OnDestroy {
                 this.listCharacteres = result.results;
                 if (filterApplied.type != 'page') this.clearPagination(result.info.count);
               }               
+            }, (error) => {
+              this.listCharacteres = [];
+              this.clearPagination(1);
             }
           )
         }

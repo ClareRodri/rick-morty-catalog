@@ -35,15 +35,6 @@ export class CharacteresService {
       )
   }
 
-  public getCharacteresById(ids: number[]): Observable<CharacterModel[]> {
-    var listIds = ids.toString();
-    return this.httpCliente
-      .get(`${this.URLBASE}/${this.URLAPI.Character}/${listIds}`)
-      .pipe(
-        map((resp: any[]) => resp.map(item => new CharacterModel(item)))
-      )
-  }
-
   public getCharacteresByFilters(filterApplied: FiltersModel) {
     let paramQuery = "";
     var searchType = filterApplied.filterType == FacetTypeEnum.bar ? FacetTypeEnum.name : filterApplied.filterType;
@@ -56,7 +47,7 @@ export class CharacteresService {
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.page, filterApplied.page + '');
 
     const queryUrl = `${this.URLBASE}${this.URLAPI.Character}${paramQuery}`;
-    return this.httpCliente.get(queryUrl);
+    return this.httpCliente.get(queryUrl)
   }
 
   private setQueryParam(query: string, key: string, value: any) {
