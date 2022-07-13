@@ -4,5 +4,6 @@ export enum FacetTypeEnum {
   gender = "gender",
   name = "name",
   bar = "nameBar",
-  page = "page"
+  page = "page",
+  scroll = "scroll",
 }

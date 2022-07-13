@@ -84,9 +84,17 @@ export class FilterService {
           ...this.currentFilterValue,
           filterType: filterType,
           page: parseInt(value),
+          type: ""
+        };
+        break; 
+      case this.facetType.scroll:
+        this.currentFilterValue = {
+          ...this.currentFilterValue,
+          filterType: filterType,
+          page: parseInt(value),
           type: "scroll"
         };
-        break;  
+        break; 
       default:
         break;
     }

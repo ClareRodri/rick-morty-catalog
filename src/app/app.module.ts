@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalDetailCharacterComponent } from './modules/catalog/components/modal-detail-character/modal-detail-character.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ModalDetailCharacterComponent } from './modules/catalog/components/moda
     LayoutModule,
     CatalogModule,
     ModalModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   entryComponents: [ModalDetailCharacterComponent],
   providers: [BsModalRef],

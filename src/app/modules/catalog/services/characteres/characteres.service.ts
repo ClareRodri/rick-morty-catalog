@@ -47,6 +47,7 @@ export class CharacteresService {
   public getCharacteresByFilters(filterApplied: FiltersModel) {
     let paramQuery = "";
     var searchType = filterApplied.filterType == FacetTypeEnum.bar ? FacetTypeEnum.name : filterApplied.filterType;
+        searchType = filterApplied.filterType == FacetTypeEnum.scroll ? FacetTypeEnum.page : filterApplied.filterType;
     
     paramQuery = this.setQueryParam(paramQuery, searchType, filterApplied.gender);
     paramQuery = this.setQueryParam(paramQuery, searchType, filterApplied.specie);

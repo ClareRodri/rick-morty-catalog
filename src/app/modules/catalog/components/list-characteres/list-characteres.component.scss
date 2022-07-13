@@ -3,17 +3,43 @@
     margin: 5px;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
-
 .list-characteres {
-    margin-left: 15px;
-}
+    margin-left: 15px;  
 
+    &.list-characteres-scroll {
+        height: 670px;
+        overflow: auto;
+    }
+}
 
 .list-character__link {
     display: inline-block;
     width: 200px;
+}
+
+.list-characteres-type-view {
+    margin: 1rem 2rem;
+    font-size: 1.2rem;
+    .options {
+        margin-right: 10px;
+        cursor: pointer;
+        &.active {
+            border-bottom: 3px solid #9cba40;
+        }
+    }
+}
+
+.list-characteres__pagination {
+    text-align: center;
+    ::ng-deep .ngx-pagination {
+        a, button {
+            color: white;
+        }
+        a:hover, button:hover {
+            color: black;
+        }
+        .current {
+           background: #9cba40;
+        }
+    }
 }
