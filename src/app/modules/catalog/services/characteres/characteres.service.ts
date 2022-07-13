@@ -28,7 +28,6 @@ export class CharacteresService {
   }
 
   public getCharacteresByFilters(filterApplied: FiltersModel) {
-    debugger
     let paramQuery = "";
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.gender, filterApplied.gender);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.specie, filterApplied.specie);
