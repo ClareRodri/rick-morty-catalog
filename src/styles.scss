@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "RickMorty";
-    src: local("Oxygen"), url(./assets/fonts/Ricky-and-Morty-font.ttf) format("truetype");
-}
+@import "./assets/scss/fonts";
 
 body {
     background-color: #20232a;
@@ -18,17 +15,6 @@ a {
 }
 
 
-.small-detail {
-    font-size: 0.8rem;
-    font-weight: 700;
-}
 
-.modal-dialog {
-    background-color: #20232a;
-    border: none;
-    border-radius: 15px;
-}
 
-.modal { 
-    background-color: transparent!important;
-}
+

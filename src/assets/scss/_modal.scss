@@ -1,3 +1,5 @@
+@import "color.scss";
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -136,4 +138,13 @@
     .modal.fade.in {
         top: 20px;
     }
+}
+
+.modal-dialog {
+    background-color: $black-background;
+    border: none;
+    border-radius: 15px;
+}
+.modal {
+    background-color: transparent !important;
 }
