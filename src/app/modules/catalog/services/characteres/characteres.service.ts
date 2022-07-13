@@ -28,14 +28,12 @@ export class CharacteresService {
   }
 
   public getCharacteresByFilters(filterApplied: FiltersModel) {
+    debugger
     let paramQuery = "";
-    var searchType = filterApplied.filterType == FacetTypeEnum.bar ? FacetTypeEnum.name : filterApplied.filterType;
-        searchType = filterApplied.filterType == FacetTypeEnum.scroll ? FacetTypeEnum.page : filterApplied.filterType;
-
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.gender, filterApplied.gender);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.specie, filterApplied.specie);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.status, filterApplied.status);
-    paramQuery = this.setQueryParam(paramQuery, searchType, filterApplied.searchBar);
+    paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.name, filterApplied.searchBar);
     paramQuery = this.setQueryParam(paramQuery, FacetTypeEnum.page, filterApplied.page + '');
 
     const queryUrl = `${this.URLBASE}${this.URLAPI.Character}${paramQuery}`;
