@@ -10,6 +10,7 @@ import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalDetailCharacterComponent } from './modules/catalog/components/modal-detail-character/modal-detail-character.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     LayoutModule,
     CatalogModule,
+    SharedModule,
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     NgxPaginationModule
